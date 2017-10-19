@@ -1,0 +1,11 @@
+{
+  "name": "butler",
+  "version": "1.0.0",
+  "description": "notification bot",
+  "main": "bot.js",
+  "author": "Cory Patterson",
+  "dependencies": {
+    "discord.io": "^2.5.3"
+  },
+  "devDependencies": {}
+}
