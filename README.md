@@ -1,0 +1,2 @@
+# harold
+A Discord Bot
