@@ -1,7 +1,7 @@
 const Discord = require('discord.io');
-const conf = require('./conf.json');
 const util = require('util');
 const fs = require('fs');
+import Data from './Data.js';
 
 /**
  * initialises the bot into the server
@@ -11,15 +11,17 @@ const bot = new Discord.Client({
   autorun: true,
 });
 
+
+
 /**
- * waits for the bot to be connected to the server 
+ * waits for the bot to be connected to the server
  */
 bot.on('ready', () => {
   console.log('Logged in as %s - %s\n', bot.username, bot.id);
   bot.setPresence({
-    status: 'online', // move this to conf
+    status: 'online', // TODO move this to conf
     game: {
-      name: 'with little cats' // move this to conf later
+      name: 'with little cats' // TODO move this to conf later
     }
   });
 });
@@ -48,19 +50,21 @@ bot.on('message', function (user, userID, channelID, message, evt) {
           message: 'Pong!',
           typing: true
         });
-      break;
+        break;
       default:
         bot.sendMessage({
           to: channelID,
           message: 'This is not the command you are looking for *mystical hand wave*',
           typing: true
         })
-      break;
+        break;
     }
   }
 });
 
-// need to keep a variable with the previous state of users to properly track this better
+/**
+ * monitors the users presence in the server, and what they are doing
+ */
 bot.on('presence', ( user, userID, status, game, event ) => {
   // console.log('user => ' + user);
   // console.log('userID => ' + userID);
@@ -98,6 +102,9 @@ d: {
   deaf: false,
   channel_id: '361453424249929728'
 }
+
+channel_id will be null if the user disconnected
+otherwise it will update to the new channel the user connected to
  */
 
 bot.on('voiceStateUpdate', event => {
@@ -107,7 +114,7 @@ bot.on('voiceStateUpdate', event => {
 /**
  * updates the config file
  * @param  {string} key   the json key to edit
- * @param  {string} value the value to set for the json object
+ * @param  {mixed} value the value to set for the json object
  * @return {undefined}       no return
  */
 updateJson = (key, value) => {

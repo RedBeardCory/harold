@@ -1,11 +1,36 @@
 {
-  "name": "butler",
+  "name": "harold",
   "version": "1.0.0",
   "description": "notification bot",
-  "main": "bot.js",
+  "main": "harold.js",
   "author": "Cory Patterson",
   "dependencies": {
     "discord.io": "^2.5.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "concurrently": "^3.5.0",
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "node ./dist/harold.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedBeardCory/harold.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedBeardCory/harold/issues"
+  },
+  "homepage": "https://github.com/RedBeardCory/harold#readme"
 }
