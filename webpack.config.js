@@ -1,24 +1,28 @@
-var webpack = require('webpack');
-var path = require('path');
-var nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-var config = {
+const config = {
   target: 'node',
   externals: [nodeExternals()],
-  entry: './src/bot.js',
+  entry: './src/Main.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'harold.js',
+    filename: 'harold.js'
   },
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        loader: 'babel-loader'
       }
     ]
-  }
+  },
+  stats: {
+    colors: true
+  },
+  devtool: 'source-map'
 };
 
 module.exports = config;
